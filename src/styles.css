@@ -1,7 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
 
+* {
+    box-sizing:border-box;
+}
 
 body{
     padding:0;
     margin:0;
+}
+
+.container{
+    /* width:100%; */
+    max-width:1400px;
+    margin:3rem auto;
+}
+
+.teaser{
+    font-size:1.4rem;
+    font-family: 'Helvetica';
+}
+
+.custom-btn{
+    padding:1rem 2rem;
+    border:none;
+    background-color:#8a10f0 ;
+    border-radius:50px;
+    color:#fff;
+    cursor: pointer;
+    transition: box-shadow 0.225s ease-in-out;
+    min-width:100px;
+}
+
+.custom-btn:hover{
+    box-shadow: 0 5px 5px lightgrey;
+    
+}
+
+@media (max-width:1400px){
+    .container{
+        max-width:900px;
+    }
+}
+
+@media (max-width:900px){
+    .container{
+        max-width:600px;
+    }
+}
+
+@media (max-width:600px){
+    .container{
+        max-width:350px;
+    }
+
+    .custom-btn{
+        padding:1rem;
+    }
+
+    .teaser{
+        display:none;
+    }
 }
