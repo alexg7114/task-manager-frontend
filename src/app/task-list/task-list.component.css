@@ -1,0 +1,25 @@
+.container{
+    padding-top:2rem;
+}
+
+.teaser-container{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background-color:#343434;
+    padding:0.5rem;
+    color:#fff;
+}
+
+.list-group{
+    list-style-type: none;
+    margin:1rem 0 0 0;
+    padding:0;
+}
+
+
+@media (max-width:600px){
+    .teaser-container{
+        justify-content: flex-start;
+    }
+}

@@ -1,0 +1,47 @@
+
+
+.list-group-item{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding:1rem 0 1rem 0;
+    font-size:1.3rem;
+    font-family: 'Helvetica';
+   /*  background-color:red; */
+}
+
+.task-text{
+    padding:0 1rem;
+}
+
+input[type="checkbox"]{
+    appearance: none;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:30px;
+    height:30px;
+    border-radius:4px;
+    border:1px solid lightgrey;
+    transition: all 0.225s ease-in-out;
+    position:relative;
+}
+
+input[type="checkbox"]:checked::after{
+    content: "✔";
+    color:#fff;
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    font-size: 20px;
+}
+
+input[type="checkbox"]:checked{
+    background-color:#8a10f0;
+}
+
+@media (max-width:600px){
+    .status{
+        display:none;
+    }
+}
