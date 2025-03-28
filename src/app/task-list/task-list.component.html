@@ -3,6 +3,10 @@
     <h3 class="teaser">Task List</h3>
   </div>
   <ul class="list-group">
-    <app-task></app-task>
+    @if(todos){
+        @for(todo of todos; track todo.id){
+            <app-task [todo]="todo" ></app-task>
+        }
+    }
   </ul>
 </section>

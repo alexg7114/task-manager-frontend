@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TaskComponent } from './task/task.component';
+import { TasksService } from '../services/tasks.service';
 
 @Component({
   selector: 'app-task-list',
@@ -10,5 +11,8 @@ import { TaskComponent } from './task/task.component';
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
+  todos = inject(TasksService).getAllTasks()
+
+  constructor(){}
 
 }
