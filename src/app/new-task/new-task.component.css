@@ -1,0 +1,31 @@
+.container{
+    padding-top:3rem;
+}
+
+.button-container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-input{
+    width:100%;
+    padding:1rem;
+    margin-right: 2rem;
+    font-size:1.3rem;
+    outline:none;
+}
+
+@media (max-width:600px){
+    .button-container{
+        flex-direction: column;
+    }
+
+    .custom-btn{
+        margin-top:2rem;
+    }
+
+    .task-input{
+        margin-right: unset;
+    }
+}

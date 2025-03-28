@@ -33,25 +33,16 @@ body{
 
 .custom-btn:hover{
     box-shadow: 0 5px 5px lightgrey;
-    
 }
 
 @media (max-width:1400px){
     .container{
-        max-width:900px;
+        padding:0 1rem;
     }
 }
 
-@media (max-width:900px){
-    .container{
-        max-width:600px;
-    }
-}
 
 @media (max-width:600px){
-    .container{
-        max-width:350px;
-    }
 
     .custom-btn{
         padding:1rem;
