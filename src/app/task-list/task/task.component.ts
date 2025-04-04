@@ -1,13 +1,24 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Task } from '../../models/task';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-task',
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
  todo = input.required<Task>()
+ toggleTaskEmitter = output()
+
+
+  toggleStatus(){
+    this.todo().checked = !this.todo().checked
+    this.todo().checked ? this.todo().status = "completed" : this.todo().status = "incompleted"
+    this.toggleTaskEmitter.emit()
+  }
 
 }

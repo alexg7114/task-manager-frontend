@@ -12,6 +12,7 @@
 
 .task-text{
     padding:0 1rem;
+    min-width: 200px;
 }
 
 input[type="checkbox"]{
@@ -38,6 +39,10 @@ input[type="checkbox"]:checked::after{
 
 input[type="checkbox"]:checked{
     background-color:#8a10f0;
+}
+
+.text-stroked{
+    text-decoration: line-through;
 }
 
 @media (max-width:600px){
