@@ -32,4 +32,8 @@ export class TasksService {
     this.todos.push(newTask)
   }
 
+  deleteTodo(todo: Task){
+    const taskIndex = this.todos.findIndex((task: Task) => task.id === todo.id)
+    this.todos.splice(taskIndex, 1)
+  }
 }

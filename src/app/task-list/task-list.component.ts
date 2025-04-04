@@ -21,4 +21,8 @@ export class TaskListComponent {
     this.todoService.updateTask(todo)
   }
 
+
+  deleteTodo(todo : Task){
+    this.todoService.deleteTodo(todo)
+  }
 }

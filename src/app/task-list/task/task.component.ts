@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, EventEmitter, input, output } from '@angular/core';
 import { Task } from '../../models/task';
 import { NgClass } from '@angular/common';
 
@@ -13,12 +13,17 @@ import { NgClass } from '@angular/common';
 export class TaskComponent {
  todo = input.required<Task>()
  toggleTaskEmitter = output()
+ deleteTodoEmitter = output()
 
 
   toggleStatus(){
     this.todo().checked = !this.todo().checked
     this.todo().checked ? this.todo().status = "completed" : this.todo().status = "incompleted"
     this.toggleTaskEmitter.emit()
+  }
+
+  deleteTodo(){
+    this.deleteTodoEmitter.emit()
   }
 
 }

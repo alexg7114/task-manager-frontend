@@ -5,7 +5,7 @@
   <ul class="list-group">
     @if(todos){
         @for(todo of todos; track todo.id){
-            <app-task [todo]="todo" (toggleTaskEmitter)="updateTask(todo)" ></app-task>
+            <app-task [todo]="todo" (toggleTaskEmitter)="updateTask(todo)" (deleteTodoEmitter)="deleteTodo(todo)" ></app-task>
         }
     }
   </ul>
