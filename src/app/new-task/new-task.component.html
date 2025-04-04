@@ -1,7 +1,7 @@
 <section class="container">
   <h3 class="teaser">Add a new Task</h3>
   <div class="button-container">
-    <input class="task-input" type="text" placeholder="Enter your task description ...">
-    <button class="custom-btn">Add</button>
+    <input #taskInputField class="task-input" type="text" placeholder="Enter your task description ...">
+    <button (click)="addTask()" class="custom-btn">Add</button>
   </div>
 </section>

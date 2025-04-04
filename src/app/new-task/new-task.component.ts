@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, viewChild, inject } from '@angular/core';
+import { TasksService } from '../services/tasks.service';
 
 @Component({
   selector: 'app-new-task',
@@ -7,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrl: './new-task.component.css'
 })
 export class NewTaskComponent {
-  
+  taskService = inject(TasksService)
+  taskInput = viewChild<ElementRef<HTMLInputElement>>("taskInputField")
+
+
+  addTask(){
+
+    if(this.taskInput()!.nativeElement.value !== ""){
+      this.taskService.addNewTask(this.taskInput()!.nativeElement.value)
+    }else{
+      return
+    }
+
+   /*  console.log(this.taskInput()!.nativeElement.value) */
+  }
 }

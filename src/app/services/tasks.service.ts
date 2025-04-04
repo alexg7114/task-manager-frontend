@@ -20,4 +20,16 @@ export class TasksService {
     this.todos.splice(chosenTodoIndex, 1)
     this.todos.splice(chosenTodoIndex, 0, todo)
   }
+
+  addNewTask(todo: string){
+    const newTask = {
+      id : this.todos.length +1,
+      task: todo,
+      status: "incompleted",
+      checked: false
+    }
+
+    this.todos.push(newTask)
+  }
+
 }
