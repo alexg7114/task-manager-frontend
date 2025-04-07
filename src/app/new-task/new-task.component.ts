@@ -19,7 +19,5 @@ export class NewTaskComponent {
     }else{
       return
     }
-
-   /*  console.log(this.taskInput()!.nativeElement.value) */
   }
 }

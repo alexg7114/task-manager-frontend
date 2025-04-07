@@ -12,7 +12,7 @@ import { Task } from '../models/task';
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
-  todos = inject(TasksService).getAllTasks()
+  todos = inject(TasksService).filteredTasks
   todoService = inject(TasksService)
 
   constructor(){}
