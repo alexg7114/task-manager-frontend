@@ -1,12 +1,35 @@
-<section class="container">
-  <div class="teaser-container">
-    <h3 class="teaser">Task List</h3>
+<div class="task-container">
+  <h2 class="Teaser">Task List</h2>
+  <!--
+   Neue Aufgabe hinzufügen 
+  <input
+    type="text"
+    placeholder="New Task"
+    [(ngModel)]="newTaskText"
+  />
+  <button (click)="addTask()">Add a new Task</button>
+
+   Filter Buttons 
+  <div class="filters">
+    <button (click)="showAll()">All Tasks</button>
+    <button (click)="showCompleted()">Completed</button>
+    <button (click)="showIncompleted()">Incompleted</button>
   </div>
-  <ul class="list-group">
-    @if(todos()){
-        @for(todo of todos(); track todo.id){
-            <app-task [todo]="todo" (toggleTaskEmitter)="updateTask(todo)" (deleteTodoEmitter)="deleteTodo(todo)" ></app-task>
-        }
-    }
+  -->
+  <!-- Aufgabenliste -->
+  <ul>
+    <li *ngFor="let task of tasks$()">
+      <input
+        type="checkbox"
+        [checked]="task.checked"
+        (change)="toggleStatus(task)"
+      />
+      <span [ngClass]="{ completed: task.status === 'completed' }">
+        {{ task.task }}
+      </span>
+      <button (click)="deleteTask(task)">Delete</button>
+    </li>
   </ul>
-</section>
+</div>
+
+

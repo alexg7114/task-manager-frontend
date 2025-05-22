@@ -1,25 +1,32 @@
-.container{
-    padding-top:2rem;
-}
+.task-container {
+    padding: 1rem;
+    max-width: 600px;
+    margin: auto;
+       
+    
+  }
+  
+  input[type="text"] {
+    width: 70%;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  button {
+    margin-right: 0.5rem;
+    
+    
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: grey;
+  }
+  
+  .filters {
+    margin-top: 1rem;
+  }
 
-.teaser-container{
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    background-color:#343434;
-    padding:0.5rem;
-    color:#fff;
-}
-
-.list-group{
-    list-style-type: none;
-    margin:1rem 0 0 0;
-    padding:0;
-}
-
-
-@media (max-width:600px){
-    .teaser-container{
-        justify-content: flex-start;
-    }
-}
+  
+  
+ 

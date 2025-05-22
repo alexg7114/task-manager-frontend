@@ -1,28 +1,56 @@
-import { Component, inject } from '@angular/core';
-import { TaskComponent } from './task/task.component';
+import { Component, OnInit, signal } from '@angular/core';
 import { TasksService } from '../services/tasks.service';
 import { Task } from '../models/task';
+import { Signal } from '@angular/core';  // Signal-Typ importieren
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: true,
   selector: 'app-task-list',
-  imports: [
-    TaskComponent
-  ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './task-list.component.html',
-  styleUrl: './task-list.component.css'
+  styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent {
-  todos = inject(TasksService).filteredTasks
-  todoService = inject(TasksService)
+export class TaskListComponent implements OnInit {
+  tasks$: Signal<Task[]> = signal([]);  // Signal wird im ngOnInit initialisiert
+  newTaskText: string = '';
 
-  constructor(){}
+  constructor(private tasksService: TasksService) {}
 
-  updateTask(todo: Task){
-    this.todoService.updateTask(todo)
+  ngOnInit(): void {
+    this.tasks$ = this.tasksService.filteredTasks; // Referenz auf das Signal im Service
+    this.tasksService.getAllTasks();
   }
 
+  addTask() {
+    if (this.newTaskText.trim()) {
+      this.tasksService.addNewTask(this.newTaskText.trim());
+      this.newTaskText = '';
+    }
+  }
 
-  deleteTodo(todo : Task){
-    this.todoService.deleteTodo(todo)
+  toggleStatus(task: Task) {
+    const updatedTask = { ...task };
+    updatedTask.status = updatedTask.status === 'completed' ? 'incompleted' : 'completed';
+    updatedTask.checked = !updatedTask.checked;
+    this.tasksService.updateTask(updatedTask);
+  }
+
+  deleteTask(task: Task) {
+    this.tasksService.deleteTodo(task);
+  }
+
+  showAll() {
+    this.tasksService.getAllTasks();
+  }
+
+  showCompleted() {
+    this.tasksService.getCompletedTasks();
+  }
+
+  showIncompleted() {
+    this.tasksService.getIncompletedTasks();
   }
 }
+

@@ -1,50 +1,55 @@
 import { Injectable, signal } from '@angular/core';
-import { tasks } from '../mock-data';
+import { HttpClient } from '@angular/common/http';
 import { Task } from '../models/task';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
-  todos = tasks
-  filteredTasks = signal<Task[]>(this.todos)
+  filteredTasks = signal<Task[]>([]);
+  private apiUrl = 'http://localhost:8000/Tasks/';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-
-  getAllTasks(){
-    this.filteredTasks.set(this.todos)
+  getAllTasks(): void {
+    this.http.get<Task[]>(this.apiUrl).subscribe(tasks => {
+      this.filteredTasks.set(tasks);
+    });
   }
 
-  updateTask(todo: Task){
-    const chosenTodoIndex = this.todos.findIndex((task: Task) => task.id == todo.id)
-    this.todos.splice(chosenTodoIndex, 1)
-    this.todos.splice(chosenTodoIndex, 0, todo)
+  addNewTask(taskText: string): void {
+    const newTask: Task = {
+      task: taskText,
+      status: 'incompleted',
+      checked: false,
+    };
+
+    this.http.post<Task>(this.apiUrl, newTask).subscribe(() => {
+      this.getAllTasks();
+    });
   }
 
-  addNewTask(todo: string){
-    const newTask = {
-      id : this.todos.length +1,
-      task: todo,
-      status: "incompleted",
-      checked: false
-    }
-
-    this.todos.push(newTask)
+  updateTask(task: Task): void {
+    this.http.put(`${this.apiUrl}${task.id}/`, task).subscribe(() => {
+      this.getAllTasks();
+    });
   }
 
-  deleteTodo(todo: Task){
-    const taskIndex = this.todos.findIndex((task: Task) => task.id === todo.id)
-    this.todos.splice(taskIndex, 1)
+  deleteTodo(task: Task): void {
+    this.http.delete(`${this.apiUrl}${task.id}/`).subscribe(() => {
+      this.getAllTasks();
+    });
   }
 
-  getCompletedTasks(){
-    const completedTasks = this.todos.filter((task: Task) => task.status === "completed")
-    this.filteredTasks.set(completedTasks)
+  getCompletedTasks(): void {
+    const completed = this.filteredTasks().filter(task => task.status === 'completed');
+    this.filteredTasks.set(completed);
   }
 
-  getIncompletedTasks(){
-    const incompletedTasks = this.todos.filter((task: Task) => task.status === "incompleted")
-    this.filteredTasks.set(incompletedTasks)
+  getIncompletedTasks(): void {
+    const incompleted = this.filteredTasks().filter(task => task.status === 'incompleted');
+    this.filteredTasks.set(incompleted);
   }
 }
+
